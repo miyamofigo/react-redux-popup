@@ -1,0 +1,64 @@
+@import './node_modules/sass-mutils/utils.scss';
+
+$config: (
+  fader-base: (
+    position: absolute,
+    top: 0px,
+    left: 0px,
+    z-index: 1,
+    width: 100%,
+    height: 100%,
+    background-color: black
+  ),
+
+  popup-container: (
+    width: auto,
+    margin: 50px,
+    z-index: 2,
+    background-color: white,
+    position: relative
+  ),
+
+  popup-close-button-area: (
+    width: 20px,
+    height: 20px,
+    background: white,
+    border: solid 3px black,
+    border-radius: 50%,
+    position: absolute,
+    top: -10px,
+    right: -10px,
+    cursor: pointer
+  )
+);
+
+$fader-attrs: position top left z-index 
+              width height background-color;
+
+.fader {
+  @include map-to-attrs(map-get($config,
+    fader-base), $fader-attrs);
+  opacity: 0.5; 
+}
+
+.fader-invisible {
+  @extend .fader;
+  display: none;
+}
+
+$popup-container-attrs: width margin z-index
+                        background-color position;
+
+.popup-container {
+  @include map-to-attrs(map-get($config,
+    popup-container), $popup-container-attrs);
+}
+
+$popup-close-button-area: width height background
+                          border border-radius position
+                          top right cursor;
+
+.popup-close-button-area {
+  @include map-to-attrs(map-get($config,
+    popup-close-button-area), $popup-close-button-area);
+}
